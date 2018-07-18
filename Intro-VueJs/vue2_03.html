@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>v-if</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue">
+    </script>
+</head>
+<body>
+    <div id="app">
+        <input v-model = "msg">
+        <br>
+        <span v-if = "msg">
+            Este texto aparece se você preencher algo
+        </span>
+        <span v-else = "msg">
+            Este texto aparece se a caixa estiver vazia
+        </span>
+
+    </div>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: "#app",
+            data: {
+                msg: ''}
+        });
+    </script>
+</body>
+</html>

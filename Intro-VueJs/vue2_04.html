@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>v-for</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue">
+    </script>
+</head>
+<body>
+    <div id="app">
+        <ol>
+            <li v-for="todo in todos">
+                {{ todo.text }}
+            </li>
+        </ol>
+    </div>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: "#app",
+            data: {
+                msg: 'fajsoifda',
+                todos: [
+                     { text: 'Learn JavaScript' },
+                     { text: 'Learn Vue' },
+                     { text: 'Build something awesome' }
+                ]
+            }
+        });
+    </script>
+</body>
+</html>

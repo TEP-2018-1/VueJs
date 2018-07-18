@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>v-for</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue">
+    </script>
+</head>
+<body>
+    <div id="app">
+        <ol>
+            <li v-for="todo in todos">
+                Todo: {{ todo.text }} / Percent concluded: {{todo.percent}} %  
+            </li>
+        </ol>
+    </div>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: "#app",
+            data: {
+                todos: [
+                     {
+                        text: 'Learn JavaScript',
+                        percent: 100
+                     },
+                    {
+                        text: 'Learn Vue',
+                        percent: 20
+                    },
+                ]
+            }
+        });
+    </script>
+</body>
+</html>
