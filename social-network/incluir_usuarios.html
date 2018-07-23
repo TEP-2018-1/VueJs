@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inserir usuário</title>
+    <script src="vue.min.js"></script>
+    <script src="axios.min.js"></script>
+    <style>
+        .errors { color: red; }
+    </style>
+</head>
+<body>
+<div id = 'app'>
+    <form>
+        <input v-model = "user.name" placeholder = "Username">
+        <input v-model = "user.email" placeholder = "E-mail">
+        <button @click.prevent = "inserirUsuario">Inserir</button>
+    </form>
+    <p v-if = "response">
+        {{ response.status }} / {{ response.statusText}}
+    </p>
+    <p v-if = "errors" class = "errors">
+        {{ errors.response.data }}
+    </p>
+</div>
+
+<script type = "text/javascript">
+    var app = new Vue({
+        el : '#app',
+        data : {
+            user : { name : '', email : ''},
+            response : '',
+            errors : '',
+        },
+        methods : {
+            inserirUsuario : function() {
+                axios.post('http://localhost/users/', this.user)
+                    .then(response => {
+                        this.response = response
+                        this.errors = ''
+                    })
+                    .catch(errors => {
+                        this.errors = errors
+                        this.response = ''
+                    })
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My second Vue app</title>
+  <script src="vue.min.js"></script>
+  <script src="axios.min.js"></script>
+  <style type="text/css">
+      .post, .pagination { width: 80%; margin: auto; }
+      body {font-family: arial;}
+      h1 { border-bottom: 1px dotted gray; }
+      .body { text-align: justify; }
+      .user { text-align: right; font-style: italic; }
+      
+  </style>
+</head>
+<body>
+  <div id = "app">
+      <div v-for = "post in posts" class = "post">
+          <h1>{{post.title}}</h1>
+          
+          <p>{{post.body}}</p>
+          <p class = "user">{{post.user}}</p>
+          <div>
+              <button @click = "excluirPost(post)">
+                Excluir
+              </button>
+
+          </div>
+      </div> 
+  </div>
+
+  <script type="text/javascript">
+    var app = new Vue({
+      el : '#app',
+      data : { 
+        posts : []
+        
+      },
+      mounted() {
+        axios.get('http://localhost/posts')
+            .then(response => {              
+              this.posts = response.data
+            })
+      },
+      methods : {
+        excluirPost : function(post) {
+          var index = app.posts.indexOf(post)
+          axios.delete('http://localhost/posts/' + post.id + '/')
+            .then( response => {
+              this.posts.splice(index, 1)
+            })
+            .catch( errors => {
+              console.log(errors)
+            })
+        }
+      }
+    })
+  </script>
+</body>
+</html>
